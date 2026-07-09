@@ -15,14 +15,20 @@ const navItems = [
   { slug: 'transit', title: 'Transit' },
 ];
 
-const Sidebar = () => {
+interface SidebarProps {
+  activeTab?: string;
+  onTabChange?: (slug: string) => void;
+}
+
+const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
-  // Find active item
-  const activeItem = navItems.find(item => `/${item.slug}` === pathname) || navItems[0];
+  // Use activeTab prop if provided, otherwise fall back to pathname
+  const currentSlug = activeTab || pathname.replace('/', '') || 'overview';
+  const activeItem = navItems.find(item => item.slug === currentSlug) || navItems[0];
 
   return (
     <>
@@ -67,13 +73,19 @@ const Sidebar = () => {
 
             <nav className="flex flex-col border-t border-gray-200">
               {navItems.map((item) => {
-                const isActive = pathname === `/${item.slug}` || (item.slug === 'overview' && pathname === '/');
+                const isActive = currentSlug === item.slug;
                 return (
                   <Link
                     key={item.slug}
                     href={`/${item.slug}`}
                     scroll={false}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      if (onTabChange) {
+                        e.preventDefault();
+                        onTabChange(item.slug);
+                      }
+                      setIsOpen(false);
+                    }}
                     className={`py-3 px-1 text-[13px] font-bold transition-all border-b border-gray-200 uppercase tracking-tight ${
                       isActive 
                         ? "text-[#005a8b] border-l-4 border-l-[#005a8b] pl-4 md:-ml-4 bg-gray-50/50" 
@@ -100,4 +112,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-

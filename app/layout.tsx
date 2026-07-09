@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
+import { getPageBySlug } from "@/lib/markdown";
+import PersistentLayout from "./components/PersistentLayout";
+import HeroBanner from "./components/HeroBanner";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -50,26 +51,56 @@ export const metadata: Metadata = {
   }
 };
 
+// Pre-render transit view as a server component
+function TransitView() {
+  return (
+    <div>
+      <HeroBanner title="Transit" />
+      <div className="prose max-w-none text-gray-700 mb-8">
+        <h1>Plots</h1>
+      </div>
+      <div className="prose max-w-none text-gray-700 mt-8">
+        <h2>By supporting regional transit performance targets, TCAMPO commits to:</h2>
+        <ul className="list-disc pl-5 space-y-2">
+          <li>Coordinating with local transit providers to integrate TAM and safety targets into the regional planning process.</li>
+          <li>Integrating specific transit performance measures and targets within the Long-Range Transportation Plan (LRTP).</li>
+          <li>Demonstrating in the Metropolitan Transportation Improvement Program (MTIP) how planned investments support and advance these transit targets.</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const safety = getPageBySlug('pm-1-safety');
+  const infrastructure = getPageBySlug('pm-2-infrastructure-conditions');
+  const systemPerformance = getPageBySlug('pm-3-system-performance');
+
   return (
     <html lang="en">
+      <head>
+        {/* Preload Plotly so iframes render faster */}
+        <link
+          rel="preload"
+          href="https://cdn.plot.ly/plotly-2.35.2.min.js"
+          as="script"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body className={`${montserrat.variable} font-sans antialiased bg-white text-gray-900`}>
-        <div className="max-w-full md:max-w-7xl mx-auto px-4 pb-20">
-          <Header />
-          <div className="flex flex-col md:flex-row md:mx-20 gap-8">
-            <Sidebar />
-            <main className="flex-1 min-w-0">
-              {children}
-            </main>
-          </div>
-        </div>
+        <PersistentLayout
+          safetyContent={safety?.content || ''}
+          infrastructureContent={infrastructure?.content || ''}
+          systemPerformanceContent={systemPerformance?.content || ''}
+          transitElement={<TransitView />}
+        >
+          {children}
+        </PersistentLayout>
       </body>
-
     </html>
   );
 }
