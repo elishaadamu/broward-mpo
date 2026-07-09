@@ -8,12 +8,11 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1e293b; /* Sleeker slate color for text */
   --mpo-blue: #005a8b;
-  --mpo-gray: #777777;
+  --mpo-gray: #64748b; /* Sleeker grey */
   --chart-title-color: #005a8b;
 }
-
 
 html {
   scroll-behavior: smooth;
@@ -23,59 +22,74 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-montserrat), sans-serif;
+  letter-spacing: -0.01em;
 }
 
 .prose h1 + h1 {
   margin-top: -0.5rem;
   font-size: 2.25rem;
-  color: #333;
+  color: #0f172a;
 }
-hr{
-  border-color: rgb(209, 209, 209);
-  margin: 5rem 0;
-  border-width: 2px;
+
+hr {
+  border-color: #f1f5f9;
+  margin: 3rem 0;
+  border-width: 1px;
 }
 
 .prose h1 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   color: var(--mpo-blue);
-  font-weight: 600;
+  font-weight: 800;
   text-transform: uppercase;
-  margin-bottom: 0px;
+  letter-spacing: -0.02em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 0.5rem;
 }
 
 .prose h2 {
-  color: var(--mpo-blue);
-  font-size: 1.5rem;
-  font-weight: 600;
+  color: #0f172a;
+  font-size: 1.35rem;
+  font-weight: 700;
   margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.prose h3 {
+  color: #334155;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .prose p {
-  color: #444;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  color: #475569; /* Slate 600 */
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
 }
 
 .prose blockquote {
-  background-color: #e8e8e8;
-  border-left: 5px solid var(--mpo-blue);
+  background-color: #f8fafc; /* Soft blue-grey bg */
+  border-left: 4px solid var(--mpo-blue);
   margin: 1.5rem 0;
-  padding: 1.5rem 2rem;
-  border-radius: 0 4px 4px 0;
-  transition: background-color 0.3s ease;
-}
-
-.prose blockquote:hover {
-  background-color: #d2d1d1;
+  padding: 1.25rem 1.75rem;
+  border-radius: 0; /* Strict flat style */
+  border-top: 1px solid #f1f5f9;
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .prose blockquote p {
   color: var(--mpo-blue);
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-size: 1.25rem;
+  font-weight: 700;
   font-style: italic;
-  line-height: 1.3;
+  line-height: 1.4;
   margin-bottom: 0;
 }
 
@@ -86,15 +100,17 @@ hr{
   width: fit-content;
   margin: 2rem auto;
   padding: 0.75rem 2rem;
-  background-color: #555;
+  background-color: #334155;
   color: #fff !important;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 0; /* Strict flat style */
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.2s ease;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .prose .prose-btn a {
@@ -103,23 +119,27 @@ hr{
 }
 
 .prose .prose-btn:hover {
-  background-color: #333;
+  background-color: var(--mpo-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .prose iframe {
   margin: 2rem 0;
+  border: 1px solid #e2e8f0;
+  background-color: #fafafa;
 }
 
 .prose ul,
 .prose ol {
-  padding-left: 1.5rem;
+  padding-left: 1.25rem;
   margin-bottom: 1.5rem;
-  color: #444;
-  line-height: 1.8;
+  color: #475569;
+  line-height: 1.7;
 }
 
 .prose ul {
-  list-style-type: disc;
+  list-style-type: square; /* Sleeker list style */
 }
 
 .prose ol {
@@ -129,6 +149,7 @@ hr{
 .prose li {
   margin-bottom: 0.5rem;
   padding-left: 0.25rem;
+  font-size: 0.95rem;
 }
 
 .prose li::marker {

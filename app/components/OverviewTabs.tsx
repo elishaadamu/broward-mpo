@@ -114,19 +114,19 @@ export default function OverviewTabs() {
     <div className="w-full">
       <HeroBanner title="Overview" />
 
-      {/* Blocky Tab Bar matching the screenshot design */}
-      <div className="mb-8 overflow-x-auto scrollbar-thin">
-        <div className="flex gap-2 min-w-max pb-1">
+      {/* Premium Flat Tab Bar matching the screenshot design */}
+      <div className="border-b border-slate-200 mb-8 overflow-x-auto scrollbar-thin">
+        <div className="flex min-w-max">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => handleTabChange(tab.id)}
-                className={`py-3 px-6 text-[13px] font-extrabold uppercase tracking-tight transition-all duration-150 rounded-none cursor-pointer ${
+                className={`py-3.5 px-6 text-xs font-extrabold uppercase tracking-wider transition-all duration-150 rounded-none cursor-pointer -mb-[1px] border-t-2 ${
                   isActive
-                    ? 'bg-[#527838] text-white shadow-md' // Green active tab
-                    : 'bg-[#505050] text-white hover:bg-[#606060]' // Dark grey inactive tab
+                    ? 'bg-white border-t-[#527838] border-x border-x-slate-200 border-b-white text-[#527838]'
+                    : 'bg-slate-50/50 border-t-transparent border-x border-x-transparent border-b-slate-200 text-slate-500 hover:bg-slate-100 hover:text-slate-800'
                 }`}
               >
                 {tab.label}
