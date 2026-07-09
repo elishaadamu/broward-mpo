@@ -125,7 +125,7 @@ export default function OverviewTabs() {
                 onClick={() => handleTabChange(tab.id)}
                 className={`py-3.5 px-6 text-xs font-extrabold uppercase tracking-wider transition-all duration-150 rounded-none cursor-pointer -mb-[1px] border-t-2 ${
                   isActive
-                    ? 'bg-white border-t-[#527838] border-x border-x-slate-200 border-b-white text-[#527838]'
+                    ? 'bg-white border-t-[#005a8b] border-x border-x-slate-200 border-b-white text-[#005a8b]'
                     : 'bg-slate-50/50 border-t-transparent border-x border-x-transparent border-b-slate-200 text-slate-500 hover:bg-slate-100 hover:text-slate-800'
                 }`}
               >

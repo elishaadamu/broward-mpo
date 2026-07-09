@@ -8,11 +8,11 @@ import { FaXTwitter } from 'react-icons/fa6';
 import { HiMenu, HiX } from 'react-icons/hi';
 
 const navItems = [
-  { slug: 'overview', title: 'Overview' },
-  { slug: 'safety', title: 'Safety' },
-  { slug: 'infrastructure', title: 'Infrastructure' },
-  { slug: 'system-performance', title: 'System Performance' },
-  { slug: 'transit', title: 'Transit' },
+  { slug: 'overview', title: 'Overview', icon: '◆' },
+  { slug: 'safety', title: 'Safety', icon: '◆' },
+  { slug: 'infrastructure', title: 'Infrastructure', icon: '◆' },
+  { slug: 'system-performance', title: 'System Performance', icon: '◆' },
+  { slug: 'transit', title: 'Transit', icon: '◆' },
 ];
 
 interface SidebarProps {
@@ -31,13 +31,13 @@ const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
 
   return (
     <>
-      {/* Mobile Menu Button - Top Left of content */}
+      {/* Mobile Menu Button */}
       {!isOpen && (
         <button 
           onClick={toggleMenu}
-          className="md:hidden flex items-center gap-2 p-3 bg-slate-100 text-slate-700 font-bold text-sm tracking-tighter border border-slate-200"
+          className="md:hidden flex items-center gap-3 py-3 px-4 bg-[#1a1f2e] text-white font-bold text-sm tracking-wide"
         >
-          <HiMenu size={20} className="bg-slate-700 text-white p-0.5" />
+          <HiMenu size={20} />
           <span>{activeItem.title}</span>
         </button>
       )}
@@ -45,66 +45,73 @@ const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
       {/* Overlay for mobile */}
       {isOpen && (
         <div 
-          className="fixed inset-0 bg-slate-900/40 z-40 md:hidden backdrop-blur-sm"
+          className="fixed inset-0 bg-black/60 z-40 md:hidden backdrop-blur-sm"
           onClick={toggleMenu}
         />
       )}
 
-      {/* Sidebar Content */}
+      {/* Dark Sidebar */}
       <aside className={`
-        fixed inset-y-0 left-0 z-50 w-72 bg-white shadow-2xl transform transition-transform duration-300 ease-in-out
-        md:relative md:translate-x-0 md:bg-transparent md:z-10 md:w-64 md:flex-shrink-0 md:pr-4 md:shadow-none
+        fixed inset-y-0 left-0 z-50 w-72 bg-[#1a1f2e] shadow-2xl transform transition-transform duration-300 ease-in-out
+        md:sticky md:top-8 md:h-[calc(100vh-6rem)] md:translate-x-0 md:bg-[#1a1f2e] md:z-10 md:w-64 md:flex-shrink-0 md:shadow-xl
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="h-full flex flex-col justify-between">
-          <div className="space-y-6 md:sticky md:top-8 mt-6 md:mt-0">
-            {/* Mobile Header (Close button) */}
-            <div className="flex md:hidden bg-slate-50 border-b border-slate-200 mb-4 justify-end">
-               <button 
-                  onClick={toggleMenu} 
-                  className="p-3 bg-slate-600 text-white hover:bg-slate-700 transition-colors"
-               >
-                  <HiX size={24} />
-               </button>
-            </div>
+        <div className="h-full flex flex-col">
+          {/* Mobile Close */}
+          <div className="flex md:hidden justify-end border-b border-white/10">
+            <button 
+              onClick={toggleMenu} 
+              className="p-3 text-slate-400 hover:text-white transition-colors"
+            >
+              <HiX size={24} />
+            </button>
+          </div>
 
-            {/* Premium Sidebar Navigation */}
-            <nav className="flex flex-col border border-slate-100 bg-white shadow-sm md:shadow-none">
-              {navItems.map((item) => {
-                const isActive = currentSlug === item.slug;
-                return (
-                  <Link
-                    key={item.slug}
-                    href={`/${item.slug}`}
-                    scroll={false}
-                    onClick={(e) => {
-                      if (onTabChange) {
-                        e.preventDefault();
-                        onTabChange(item.slug);
-                      }
-                      setIsOpen(false);
-                    }}
-                    className={`py-3.5 px-4 text-xs font-extrabold uppercase tracking-wider transition-all duration-150 border-l-2 cursor-pointer flex items-center justify-between ${
-                      isActive 
-                        ? "text-[#005a8b] border-[#005a8b] bg-slate-50/70" 
-                        : "text-slate-600 border-transparent hover:text-[#005a8b] hover:bg-slate-50/30 hover:border-slate-200"
-                    }`}
-                  >
-                    <span>{item.title}</span>
-                    <span className={`text-[10px] transition-transform duration-200 ${isActive ? 'translate-x-1 text-[#005a8b]' : 'opacity-0'}`}>
-                      ➔
-                    </span>
-                  </Link>
-                );
-              })}
-            </nav>
-            
-            {/* Sleeker Social Icons container */}
-            <div className="flex items-center gap-4 pt-6 border-t border-slate-100 px-4 text-slate-400">
-              <a href="#" className="hover:text-[#005a8b] hover:scale-110 transition-all duration-150"><FaEnvelope size={16} /></a>
-              <a href="#" className="hover:text-[#005a8b] hover:scale-110 transition-all duration-150"><FaFacebookF size={16} /></a>
-              <a href="#" className="hover:text-[#005a8b] hover:scale-110 transition-all duration-150"><FaXTwitter size={16} /></a>
-              <a href="#" className="hover:text-[#005a8b] hover:scale-110 transition-all duration-150"><FaLinkedinIn size={16} /></a>
+          {/* Sidebar Header */}
+          <div className="px-6 py-6 border-b border-white/10">
+            <p className="text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-1">Navigation</p>
+            <p className="text-xs text-white/80">Performance Measures</p>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex-1 py-3 px-3 space-y-1 overflow-y-auto">
+            {navItems.map((item) => {
+              const isActive = currentSlug === item.slug;
+              return (
+                <Link
+                  key={item.slug}
+                  href={`/${item.slug}`}
+                  scroll={false}
+                  onClick={(e) => {
+                    if (onTabChange) {
+                      e.preventDefault();
+                      onTabChange(item.slug);
+                    }
+                    setIsOpen(false);
+                  }}
+                  className={`flex items-center gap-3 py-3 px-4 text-[13px] font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer group ${
+                    isActive 
+                      ? "bg-white/10 text-white border-l-[3px] border-l-[#0ea5e9]" 
+                      : "text-white/70 border-l-[3px] border-l-transparent hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  <span className={`text-[8px] transition-colors duration-200 ${isActive ? 'text-[#0ea5e9]' : 'text-white/30 group-hover:text-white/60'}`}>
+                    {item.icon}
+                  </span>
+                  <span>{item.title}</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Bottom Section: Social Icons */}
+          <div className="px-6 py-5 border-t border-white/10">
+            <p className="text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase mb-3">Connect</p>
+            <div className="flex items-center gap-4">
+              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaEnvelope size={14} /></a>
+              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaFacebookF size={14} /></a>
+              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaXTwitter size={14} /></a>
+              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaLinkedinIn size={14} /></a>
             </div>
           </div>
         </div>
