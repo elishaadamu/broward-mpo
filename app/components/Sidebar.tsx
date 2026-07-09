@@ -6,17 +6,23 @@ import { usePathname } from 'next/navigation';
 import { FaEnvelope, FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { HiMenu, HiX } from 'react-icons/hi';
-import { PageData } from '@/lib/markdown';
 
-interface SidebarProps {
-  pages: PageData[];
-}
+const navItems = [
+  { slug: 'overview', title: 'Overview' },
+  { slug: 'safety', title: 'Safety' },
+  { slug: 'infrastructure', title: 'Infrastructure' },
+  { slug: 'system-performance', title: 'System Performance' },
+  { slug: 'transit', title: 'Transit' },
+];
 
-const Sidebar = ({ pages }: SidebarProps) => {
+const Sidebar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  // Find active item
+  const activeItem = navItems.find(item => `/${item.slug}` === pathname) || navItems[0];
 
   return (
     <>
@@ -27,7 +33,7 @@ const Sidebar = ({ pages }: SidebarProps) => {
           className="md:hidden flex items-center gap-2 p-3 bg-gray-100 text-gray-700 font-bold text-sm tracking-tighter"
         >
           <HiMenu size={24} className="bg-gray-600 text-white p-1" />
-          <span>{pages.find(p => `/${p.slug}` === pathname)?.title || "MENU"}</span>
+          <span>{activeItem.title}</span>
         </button>
       )}
 
@@ -49,8 +55,8 @@ const Sidebar = ({ pages }: SidebarProps) => {
           {/* Mobile Header (Close button as seen in image) */}
           <div className="flex md:hidden bg-gray-100 border-b border-gray-300">
              <button 
-               onClick={toggleMenu} 
-               className="p-3 bg-gray-500 text-white hover:bg-gray-600 transition-colors"
+                onClick={toggleMenu} 
+                className="p-3 bg-gray-500 text-white hover:bg-gray-600 transition-colors"
              >
                <HiX size={28} />
              </button>
@@ -60,12 +66,12 @@ const Sidebar = ({ pages }: SidebarProps) => {
           <div className="md:sticky md:top-8 space-y-8 overflow-y-auto px-6 md:px-0 mt-6 md:mt-0">
 
             <nav className="flex flex-col border-t border-gray-200">
-              {pages.map((page) => {
-                const isActive = pathname === `/${page.slug}`;
+              {navItems.map((item) => {
+                const isActive = pathname === `/${item.slug}` || (item.slug === 'overview' && pathname === '/');
                 return (
                   <Link
-                    key={page.slug}
-                    href={`/${page.slug}`}
+                    key={item.slug}
+                    href={`/${item.slug}`}
                     scroll={false}
                     onClick={() => setIsOpen(false)}
                     className={`py-3 px-1 text-[13px] font-bold transition-all border-b border-gray-200 uppercase tracking-tight ${
@@ -74,7 +80,7 @@ const Sidebar = ({ pages }: SidebarProps) => {
                         : "text-gray-800 hover:text-[#005a8b] hover:pl-2"
                     }`}
                   >
-                    {page.title}
+                    {item.title}
                   </Link>
                 );
               })}
@@ -94,3 +100,4 @@ const Sidebar = ({ pages }: SidebarProps) => {
 };
 
 export default Sidebar;
+
