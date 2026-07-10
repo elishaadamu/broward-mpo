@@ -3,23 +3,21 @@ title: PM-1 Safety
 order: 4
 ---
 
-## Number of Fatalities
-
 <iframe src="/safety/fatalities_plot_purple.html" width="100%" height="520" frameborder="0" scrolling="no"></iframe>
 
-## Fatality Rate (per 100 million VMT)
+---
 
 <iframe src="/safety/fatality_rate_plot_purple.html" width="100%" height="520" frameborder="0" scrolling="no"></iframe>
 
-## Number of Serious Injuries
+---
 
 <iframe src="/safety/serious_injuries_plot_purple.html" width="100%" height="520" frameborder="0" scrolling="no"></iframe>
 
-## Serious Injury Rate (per 100 million VMT)
+---
 
 <iframe src="/safety/serious_injury_rate_plot_purple.html" width="100%" height="520" frameborder="0" scrolling="no"></iframe>
 
-## Number of Non-Motorized Fatalities and Serious Injuries
+---
 
 <iframe src="/safety/nmfsi_plot_purple.html" width="100%" height="520" frameborder="0" scrolling="no"></iframe>
 

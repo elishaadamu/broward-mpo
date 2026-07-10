@@ -102,7 +102,7 @@ export default function PersistentLayout({
   return (
     <div className="max-w-full md:max-w-7xl mx-auto px-4 pb-20">
       <Header />
-      <div className="flex flex-col md:flex-row md:mx-20 gap-8">
+      <div className="flex flex-col md:flex-row md:mx-4 gap-8">
         <Sidebar activeTab={activeTab} onTabChange={handleTabChange} />
 
         <main className="flex-1 min-w-0 relative">
