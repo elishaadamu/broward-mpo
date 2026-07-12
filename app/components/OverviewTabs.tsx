@@ -114,8 +114,8 @@ export default function OverviewTabs() {
     <div className="w-full">
       <HeroBanner title="Overview" />
 
-      {/* Premium Flat Tab Bar matching the screenshot design */}
-      <div className="border-b border-slate-200 mb-8 overflow-x-auto scrollbar-thin">
+      {/* Premium Dark Tab Bar */}
+      <div className="border-b border-[#2a2f45] mb-8 overflow-x-auto scrollbar-thin">
         <div className="flex min-w-max">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
@@ -125,8 +125,8 @@ export default function OverviewTabs() {
                 onClick={() => handleTabChange(tab.id)}
                 className={`py-3.5 px-6 text-xs font-extrabold uppercase tracking-wider transition-all duration-150 rounded-none cursor-pointer -mb-[1px] border-t-2 ${
                   isActive
-                    ? 'bg-white border-t-[#005a8b] border-x border-x-slate-200 border-b-white text-[#005a8b]'
-                    : 'bg-slate-50/50 border-t-transparent border-x border-x-transparent border-b-slate-200 text-slate-500 hover:bg-slate-100 hover:text-slate-800'
+                    ? 'bg-[#1a1d2e] border-t-[#38bdf8] border-x border-x-[#2a2f45] border-b-[#1a1d2e] text-[#38bdf8]'
+                    : 'bg-[#0f1117] border-t-transparent border-x border-x-transparent border-b-[#2a2f45] text-slate-500 hover:bg-[#1a1d2e] hover:text-slate-300'
                 }`}
               >
                 {tab.label}

@@ -16,8 +16,8 @@ const goalColors = ["#b6cb1a", "#f87c01", "#0481f7", "#3cbcb6", "#e34c00"];
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white/90 text-gray-800 p-3 border border-gray-200 rounded-lg shadow-lg">
-        <p className="font-bold text-gray-900">{`Year: ${label}`}</p>
+      <div className="bg-[#1a1d2e]/95 text-slate-200 p-3 border border-[#2a2f45] rounded-lg shadow-lg backdrop-blur-sm">
+        <p className="font-bold text-slate-100">{`Year: ${label}`}</p>
         {payload.map((pld) => (
           <div
             key={pld.dataKey}
@@ -54,7 +54,7 @@ const StackedBarChart = ({
     type: "square",
     id: key.key,
     color: toggledLegends[key.key]
-      ? "#ccc"
+      ? "#4a5568"
       : goalColors[index % goalColors.length],
   }));
   return (
@@ -73,23 +73,23 @@ const StackedBarChart = ({
               bottom: 20,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
-            <XAxis dataKey={xAxisKey} tick={{ fill: "#6b7280" }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#2a2f45" />
+            <XAxis dataKey={xAxisKey} tick={{ fill: "#94a3b8" }}>
               <Label
                 value={xAxisKey.charAt(0).toUpperCase() + xAxisKey.slice(1)}
                 offset={-15}
                 position="insideBottom"
-                fill="#4b5563"
+                fill="#94a3b8"
               />
             </XAxis>
-            <YAxis tick={{ fill: "#6b7280" }}>
+            <YAxis tick={{ fill: "#94a3b8" }}>
               <Label
                 value={yAxisLabel}
                 angle={-90}
                 position="insideLeft"
                 style={{ textAnchor: "middle" }}
                 offset={-20}
-                fill="#4b5563"
+                fill="#94a3b8"
               />
             </YAxis>
             <Tooltip content={<CustomTooltip />} />
@@ -98,7 +98,7 @@ const StackedBarChart = ({
               height={36}
               payload={legendPayload}
               onClick={(e) => onLegendClick && onLegendClick(e.id)}
-              wrapperStyle={{ color: "#374151", fontWeight: "bold" }}
+              wrapperStyle={{ color: "#e2e8f0", fontWeight: "bold" }}
             />
             {keys.map((key, index) => (
               <Bar

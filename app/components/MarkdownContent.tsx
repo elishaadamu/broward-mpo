@@ -18,13 +18,13 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
           h2: ({node, ...props}: any) => <h2 {...props} />,
           p: ({node, ...props}: any) => <p {...props} />,
           strong: ({node, ...props}: any) => (
-            <strong className="font-bold text-[#005a8b]" {...props} />
+            <strong className="font-bold text-[#38bdf8]" {...props} />
           ),
           img: ({node, ...props}: any) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img 
               {...props} 
-              className="w-full h-auto rounded-xl shadow-md my-8 border border-gray-100" 
+              className="w-full h-auto rounded-xl shadow-md my-8 border border-[#2a2f45]" 
             />
           ),
           a: ({node, children, ...props}: any) => {
@@ -32,7 +32,7 @@ export default function MarkdownContent({ content }: MarkdownContentProps) {
             return (
               <a 
                 {...props} 
-                className="text-[#005a8b] font-semibold underline-offset-4 hover:underline transition-all inline-flex items-baseline gap-0.5"
+                className="text-[#38bdf8] font-semibold underline-offset-4 hover:underline hover:text-[#7dd3fc] transition-all inline-flex items-baseline gap-0.5"
                 target={isExternal ? '_blank' : undefined}
                 rel={isExternal ? 'noopener noreferrer' : undefined}
               >

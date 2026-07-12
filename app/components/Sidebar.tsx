@@ -35,7 +35,7 @@ const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
       {!isOpen && (
         <button 
           onClick={toggleMenu}
-          className="md:hidden flex items-center gap-3 py-3 px-4 bg-[#1a1f2e] text-white font-bold text-sm tracking-wide"
+          className="md:hidden flex items-center gap-3 py-3 px-4 bg-[#152030] text-white font-bold text-sm tracking-wide rounded-xl border border-[#243044]"
         >
           <HiMenu size={20} />
           <span>{activeItem.title}</span>
@@ -50,10 +50,11 @@ const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
         />
       )}
 
-      {/* Dark Sidebar */}
+      {/* Dark Sidebar — matching the deep navy card design */}
       <aside className={`
-        fixed inset-y-0 left-0 z-50 w-72 bg-[#1a1f2e] shadow-2xl transform transition-transform duration-300 ease-in-out
-        md:sticky md:top-8 md:h-[calc(100vh-6rem)] md:translate-x-0 md:bg-[#1a1f2e] md:z-10 md:w-64 md:flex-shrink-0 md:shadow-xl
+        fixed inset-y-0 left-0 z-50 w-72 bg-[#152030] shadow-2xl transform transition-transform duration-300 ease-in-out
+        md:sticky md:top-8 md:h-[calc(100vh-6rem)] md:translate-x-0 md:z-10 md:w-64 md:flex-shrink-0 
+        md:rounded-2xl md:border md:border-[#243044] md:shadow-[0_8px_32px_rgba(0,0,0,0.4)]
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="h-full flex flex-col">
@@ -68,13 +69,12 @@ const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
           </div>
 
           {/* Sidebar Header */}
-          <div className="px-6 py-6 border-b border-white/10">
-            <p className="text-[10px] font-bold tracking-[0.2em] text-white/50 uppercase mb-1">Navigation</p>
-            <p className="text-xs text-white/80">Performance Measures</p>
+          <div className="px-6 pt-7 pb-5">
+            <p className="text-[10px] font-bold tracking-[0.2em] text-slate-500 uppercase mb-1">Navigation</p>
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 py-3 px-3 space-y-1 overflow-y-auto">
+          <nav className="flex-1 py-2 px-4 space-y-2 overflow-y-auto">
             {navItems.map((item) => {
               const isActive = currentSlug === item.slug;
               return (
@@ -89,13 +89,13 @@ const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
                     }
                     setIsOpen(false);
                   }}
-                  className={`flex items-center gap-3 py-3 px-4 text-[13px] font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer group ${
+                  className={`flex items-center gap-3 py-3.5 px-5 text-[13px] font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer group rounded-xl ${
                     isActive 
-                      ? "bg-white/10 text-white border-l-[3px] border-l-[#0ea5e9]" 
-                      : "text-white/70 border-l-[3px] border-l-transparent hover:text-white hover:bg-white/5"
+                      ? "bg-[#eab308] text-[#1a1400] shadow-lg shadow-yellow-500/20" 
+                      : "text-white/80 hover:text-white hover:bg-white/5"
                   }`}
                 >
-                  <span className={`text-[8px] transition-colors duration-200 ${isActive ? 'text-[#0ea5e9]' : 'text-white/30 group-hover:text-white/60'}`}>
+                  <span className={`text-[8px] transition-colors duration-200 ${isActive ? 'text-[#1a1400]/60' : 'text-white/30 group-hover:text-white/60'}`}>
                     {item.icon}
                   </span>
                   <span>{item.title}</span>
@@ -105,13 +105,13 @@ const Sidebar = ({ activeTab, onTabChange }: SidebarProps) => {
           </nav>
 
           {/* Bottom Section: Social Icons */}
-          <div className="px-6 py-5 border-t border-white/10">
-            <p className="text-[10px] font-bold tracking-[0.15em] text-white/40 uppercase mb-3">Connect</p>
+          <div className="px-6 py-5 border-t border-white/8">
+            <p className="text-[10px] font-bold tracking-[0.15em] text-slate-500 uppercase mb-3">Connect</p>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaEnvelope size={14} /></a>
-              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaFacebookF size={14} /></a>
-              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaXTwitter size={14} /></a>
-              <a href="#" className="text-white/60 hover:text-white transition-all duration-200 hover:scale-110"><FaLinkedinIn size={14} /></a>
+              <a href="#" className="text-white/50 hover:text-[#eab308] transition-all duration-200 hover:scale-110"><FaEnvelope size={14} /></a>
+              <a href="#" className="text-white/50 hover:text-[#eab308] transition-all duration-200 hover:scale-110"><FaFacebookF size={14} /></a>
+              <a href="#" className="text-white/50 hover:text-[#eab308] transition-all duration-200 hover:scale-110"><FaXTwitter size={14} /></a>
+              <a href="#" className="text-white/50 hover:text-[#eab308] transition-all duration-200 hover:scale-110"><FaLinkedinIn size={14} /></a>
             </div>
           </div>
         </div>

@@ -238,10 +238,10 @@ const ChartRenderer: React.FC<ChartRendererProps> = ({ measure }) => {
     return configs;
   }, [chartData, toggledLegends]);
 
-  if (loading) return <div className="h-[400px] flex items-center justify-center text-gray-400">Loading chart data...</div>;
+  if (loading) return <div className="h-[400px] flex items-center justify-center text-slate-500">Loading chart data...</div>;
   
   const config = (chartConfig as any)[measure];
-  if (!config) return <div className="p-4 bg-red-50 text-red-500 rounded-lg">No chart configuration found for: {measure}</div>;
+  if (!config) return <div className="p-4 bg-red-900/30 text-red-400 border border-red-800/50 rounded-lg">No chart configuration found for: {measure}</div>;
 
   const ChartComponent = config.component;
   return (

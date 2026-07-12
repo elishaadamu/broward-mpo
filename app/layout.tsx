@@ -56,10 +56,10 @@ function TransitView() {
   return (
     <div>
       <HeroBanner title="Transit" />
-      <div className="prose max-w-none text-gray-700 mb-8">
+      <div className="prose max-w-none text-slate-300 mb-8">
         <h1>Plots</h1>
       </div>
-      <div className="prose max-w-none text-gray-700 mt-8">
+      <div className="prose max-w-none text-slate-300 mt-8">
         <h2>By supporting regional transit performance targets, TCAMPO commits to:</h2>
         <ul className="list-disc pl-5 space-y-2">
           <li>Coordinating with local transit providers to integrate TAM and safety targets into the regional planning process.</li>
@@ -91,7 +91,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body className={`${montserrat.variable} font-sans antialiased bg-white text-gray-900`}>
+      <body className={`${montserrat.variable} font-sans antialiased bg-[#0f1117] text-slate-200`}>
         <PersistentLayout
           safetyContent={safety?.content || ''}
           infrastructureContent={infrastructure?.content || ''}

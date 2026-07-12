@@ -7,7 +7,7 @@ interface HeroBannerProps {
 export default function HeroBanner({ title }: HeroBannerProps) {
   return (
     <div 
-      className="w-full h-32 md:h-40 rounded-none overflow-hidden mb-8 relative flex items-center px-8 shadow-sm border border-slate-200/60 bg-cover"
+      className="w-full h-32 md:h-40 rounded-none overflow-hidden mb-8 relative flex items-center px-8 shadow-sm border border-[#2a2f45] bg-cover"
       style={{ 
         backgroundImage: "url('/images/hero-bg.png')",
         backgroundPosition: "right center"

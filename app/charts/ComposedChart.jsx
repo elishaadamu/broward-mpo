@@ -15,8 +15,8 @@ import {
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-white/90 text-gray-800 p-3 border border-gray-200 rounded-lg shadow-lg">
-        <p className="font-bold text-gray-900">{`Year: ${label}`}</p>
+      <div className="bg-[#1a1d2e]/95 text-slate-200 p-3 border border-[#2a2f45] rounded-lg shadow-lg backdrop-blur-sm">
+        <p className="font-bold text-slate-100">{`Year: ${label}`}</p>
         {payload.map((pld) => (
           <div
             key={pld.dataKey}
@@ -59,7 +59,7 @@ const ComposedChart = ({
     value: item.name,
     type: item.type === "line" ? "line" : "square",
     id: item.key,
-    color: toggledLegends[item.key] ? "#ccc" : item.color,
+    color: toggledLegends[item.key] ? "#4a5568" : item.color,
   }));
 
   return (
@@ -78,23 +78,23 @@ const ComposedChart = ({
               bottom: 20,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#2a2f45" />
             <XAxis
               dataKey={xAxisKey}
               tickFormatter={(tick) => tick.toString()}
-              tick={{ fill: "#6b7280" }}
+              tick={{ fill: "#94a3b8" }}
             >
               <Label
                 value={xAxisKey.charAt(0).toUpperCase() + xAxisKey.slice(1)}
                 offset={-15}
                 position="insideBottom"
-                fill="#4b5563"
+                fill="#94a3b8"
               />
             </XAxis>
             <YAxis
               yAxisId="left"
               tickFormatter={yAxisTickFormatter}
-              tick={{ fill: "#6b7280" }}
+              tick={{ fill: "#94a3b8" }}
             >
               <Label
                 value={yAxisLabel}
@@ -102,21 +102,21 @@ const ComposedChart = ({
                 position="insideLeft"
                 style={{ textAnchor: "middle" }}
                 offset={-20}
-                fill="#4b5563"
+                fill="#94a3b8"
               />
             </YAxis>
             <YAxis
               yAxisId="right"
               orientation="right"
               tickFormatter={yAxisTickFormatterRight}
-              tick={{ fill: "#6b7280" }}
+              tick={{ fill: "#94a3b8" }}
             >
               <Label
                 value={yAxisLabelRight}
                 angle={-90}
                 position="insideRight"
                 style={{ textAnchor: "middle" }}
-                fill="#4b5563"
+                fill="#94a3b8"
               />
             </YAxis>
             <Tooltip content={<CustomTooltip />} />
@@ -125,7 +125,7 @@ const ComposedChart = ({
               height={36}
               payload={legendPayload}
               onClick={(e) => onLegendClick && onLegendClick(e.id)}
-              wrapperStyle={{ color: "#374151", fontWeight: "bold" }}
+              wrapperStyle={{ color: "#e2e8f0", fontWeight: "bold" }}
             />
             {bars.map((bar) => (
               <Bar
